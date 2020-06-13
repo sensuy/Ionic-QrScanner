@@ -21,7 +21,6 @@ export class Tab1Page {
   ) { }
 
   ionViewWillEnter() {
-    this.scan();
   }
 
   scan() {

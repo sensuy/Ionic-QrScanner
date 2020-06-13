@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataLocalService } from 'src/app/services/data-local.service';
+import { Registro } from 'src/app/models/registro.model';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,19 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(
+    public dataLocalService: DataLocalService,
+  ) { }
+
+
+  enviarCorreo() {
+    console.log('Enviando correo...');
+
+  }
+
+  abrirRegistro(registro: Registro) {
+    console.log('Registro: ', registro);
+    this.dataLocalService.abrirRegistro(registro);
+  }
 
 }
