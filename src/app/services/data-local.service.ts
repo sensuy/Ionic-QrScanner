@@ -22,6 +22,8 @@ export class DataLocalService {
 
   async cargarStorage() {
     this.guardados = await this.storage.get('registros') || [];
+    console.log('getGuardadosFrom storage: ', this.guardados);
+
   }
 
   async guardarRegistro(format: string, text: string) {
@@ -29,7 +31,7 @@ export class DataLocalService {
     const nuevoRegistro = new Registro(format, text);
     this.guardados.unshift(nuevoRegistro);
     console.log('this.guardados: ', this.guardados);
-    this.storage.set('registros', this.guardados);
+    await this.storage.set('registros', this.guardados);
     this.abrirRegistro(nuevoRegistro);
   }
 
@@ -39,11 +41,11 @@ export class DataLocalService {
 
     switch (registro.type) {
       case 'http':
-        // abrir el navegador web
-        console.log('here');
         this.inAppBrowser.create(registro.text, '_system');
         break;
-
+      case 'geo':
+        this.navCtrl.navigateForward(`/tabs/tab2/mapa/${registro.text}`);
+        break;
       default:
         break;
     }

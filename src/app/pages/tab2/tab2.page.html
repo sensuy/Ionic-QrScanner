@@ -15,7 +15,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let registro of dataLocalService.guardados" detail (click)="abrirRegistro(registro)">
-      <ion-icon color="primaryii" slot="start" [name]="registro.icon"></ion-icon>
+      <ion-icon color="primary" slot="start" [name]="registro.icon"></ion-icon>
       <ion-label>
         <h2> {{ registro.text }} </h2>
         <p> {{ registro.created | date: 'medium' }} </p>
